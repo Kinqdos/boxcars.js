@@ -29,7 +29,11 @@ export enum NetworkParse {
 // Type polyfills
 type i8 = number
 type i32 = number
+type i64 = number
+type u8 = number
+type u16 = number
 type u32 = number
+type u64 = number
 type f32 = number
 type bool = boolean
 type Option<T> = T | null
@@ -43,7 +47,7 @@ export type Replay = {
     header_crc: u32
     major_version: i32
     minor_version: i32
-    net_version: i32 | null
+    net_version: Option<i32>
     game_type: string
 
     // Could use a map to represent properties but I don't want to assume that duplicate keys
@@ -51,7 +55,7 @@ export type Replay = {
     properties: { [key: string]: HeaderProp }
     content_size: i32
     content_crc: u32
-    network_frames: NetworkFrames | null
+    network_frames: Option<NetworkFrames>
     levels: Vec<string>
     keyframes: Vec<KeyFrame>
     debug_info: Vec<DebugInfo>
@@ -151,9 +155,9 @@ export type Quaternion = {
 
 /// An object's current rotation
 export type Rotation = {
-    yaw: i8 | null
-    pitch: i8 | null
-    roll: i8 | null
+    yaw: Option<i8>
+    pitch: Option<i8>
+    roll: Option<i8>
 }
 
 /// Notifies that an actor has had one of their properties updated (most likely their rigid body
@@ -210,7 +214,7 @@ export type NewActor = {
     actor_id: ActorId
 
     /// An name id
-    name_id: i32 | null
+    name_id: Option<i32>
 
     /// The actor's object id.
     object_id: ObjectId
@@ -221,8 +225,8 @@ export type NewActor = {
 
 /// Contains the optional location and rotation of an object when it spawns
 export type Trajectory = {
-    location: Vector3i | null
-    rotation: Rotation | null
+    location: Option<Vector3i>
+    rotation: Option<Rotation>
 }
 
 
