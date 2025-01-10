@@ -11,6 +11,12 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = JSON, js_name = parse)]
+    fn json_parse(text: String) -> JsValue;
+}
+
+#[wasm_bindgen]
 pub struct BoxcarsParser {
     data: Box<[u8]>,
     crc_check: Option<CrcCheck>,
@@ -50,7 +56,7 @@ impl BoxcarsParser {
         self
     }
 
-    pub fn parse(self) -> String {
+    pub fn parse(self) -> typescript::Replay {
         let mut builder = ParserBuilder::new(&*self.data);
         if self.crc_check.is_some() {
             builder = builder.with_crc_check(self.crc_check.unwrap());
@@ -58,7 +64,8 @@ impl BoxcarsParser {
         if self.network_parse.is_some() {
             builder = builder.with_network_parse(self.network_parse.unwrap());
         };
-        let replay = builder.parse();
-        serde_json::to_string(&replay.unwrap()).unwrap()
+        let replay = builder.parse().unwrap();
+        let json = serde_json::to_string(&replay).unwrap();
+        json_parse(json).into()
     }
 }
