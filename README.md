@@ -6,20 +6,52 @@
 </div>
 
 ## About
-boxcars-wasm uses [WebAssembly](https://github.com/rustwasm/wasm-pack) to use the [Rocket League](http://www.rocketleaguegame.com/) replay parser library [boxcars](https://github.com/nickbabcock/boxcars) from [nickbabcok](https://github.com/nickbabcock)
+boxcars-wasm is a JavaScript port of the [Rocket League](http://www.rocketleaguegame.com/) replay parser library [boxcars](https://github.com/nickbabcock/boxcars) by [nickbabcok](https://github.com/nickbabcock). 
+It uses [WebAssembly](https://github.com/rustwasm/wasm-pack) to compile the underlying Rust implementation to a wasm module for JavaScript. It provides typing for all object, even the parsed replay. 
 
-[tutorials]: https://rustwasm.github.io/docs/wasm-pack/tutorials/index.html
-[template-docs]: https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/index.html
+## 🚀 Features
 
-## Build
+- ✨ **Full TypeScript support**
+- 🛠️ **Intuitive API**: Designed for developer productivity and ease of use.
+- ⚡  **Lightweight and Fast**: Zero Dependencies & Rust execution speed
 
-### 🛠️ Compile rust to wasm with `wasm-pack build`
+## 📥 Installation
+Install the latest version using:
+
+```bash
+npm install boxcars
+```
+or
+```bash
+yarn add boxcars
+```
+or
+```bash
+pnpm add boxcars
+```
+
+## 📝 Usage
+> For options & architecture of the parsed replay visit [boxcars](https://github.com/nickbabcock/boxcars)
+
+```typescript
+import {BoxcarsParser, CrcCheck, NetworkParse} from "boxcars";
+import * as fs from "node:fs";
+
+const parser = new BoxcarsParser(fs.readFileSync("/Users/z00445bb/Downloads/test.replay"))
+        .setCrcCheck(CrcCheck.ALWAYS)
+        .setNetworkParse(NetworkParse.ALWAYS)
+console.log(parser.parse())
+```
+
+## 🛠 Build
+
+### 🛠 Compile rust to wasm with `wasm-pack build`
 
 ```
 wasm-pack build
 ```
 
-### 📦 Package npm package
+### 📦 Build npm package
 
 ```
 wasm-pack pack
