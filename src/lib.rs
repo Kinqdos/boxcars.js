@@ -16,6 +16,20 @@ extern "C" {
     fn json_parse(text: String) -> JsValue;
 }
 
+#[wasm_bindgen(js_name = "CrcCheck")]
+pub enum InternalCrcCheck {
+    Always,
+    Never,
+    OnError,
+}
+
+#[wasm_bindgen(js_name = "NetworkParse")]
+pub enum InternalNetworkParse {
+    Always,
+    Never,
+    IgnoreOnError,
+}
+
 #[wasm_bindgen]
 pub struct BoxcarsParser {
     data: Box<[u8]>,
@@ -35,23 +49,21 @@ impl BoxcarsParser {
     }
 
     #[wasm_bindgen(js_name = "setCrcCheck")]
-    pub fn set_crc_check(mut self, check: typescript::CrcCheck) -> Self {
-        self.crc_check = Some(match check.as_string().unwrap().as_str() {
-            "ALWAYS" => CrcCheck::Always,
-            "NEVER" => CrcCheck::Never,
-            "ON_ERROR" => CrcCheck::OnError,
-            _ => panic!("invalid crc_check"),
+    pub fn set_crc_check(mut self, check: InternalCrcCheck) -> Self {
+        self.crc_check = Some(match check {
+            InternalCrcCheck::Always => CrcCheck::Always,
+            InternalCrcCheck::Never => CrcCheck::Never,
+            InternalCrcCheck::OnError => CrcCheck::OnError,
         });
         self
     }
 
     #[wasm_bindgen(js_name = "setNetworkParse")]
-    pub fn set_network_parse(mut self, parse: typescript::NetworkParse) -> Self {
-        self.network_parse = Some(match parse.as_string().unwrap().as_str() {
-            "ALWAYS" => NetworkParse::Always,
-            "NEVER" => NetworkParse::Never,
-            "IGNORE_ON_ERROR" => NetworkParse::IgnoreOnError,
-            _ => panic!("invalid network parse"),
+    pub fn set_network_parse(mut self, parse: InternalNetworkParse) -> Self {
+        self.network_parse = Some(match parse {
+            InternalNetworkParse::Always => NetworkParse::Always,
+            InternalNetworkParse::Never => NetworkParse::Never,
+            InternalNetworkParse::IgnoreOnError => NetworkParse::IgnoreOnError,
         });
         self
     }

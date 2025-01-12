@@ -2,30 +2,12 @@ use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(typescript_type = "CrcCheck")]
-    pub type CrcCheck;
-
-    #[wasm_bindgen(typescript_type = "NetworkParse")]
-    pub type NetworkParse;
-
-    #[wasm_bindgen(typescript_type = "Replay")]
+    #[wasm_bindgen(typescript_type = "any")]
     pub type Replay;
 }
 
 #[wasm_bindgen(typescript_custom_section)]
 pub const TYPESCRIPT: &'static str = r#"
-export enum CrcCheck {
-    ALWAYS = "ALWAYS",
-    NEVER = "NEVER",
-    ON_ERROR = "ON_ERROR"
-}
-
-export enum NetworkParse {
-  ALWAYS = "ALWAYS",
-  NEVER = "NEVER",
-  IGNORE_ON_ERROR = "IGNORE_ON_ERROR"
-}
-
 // Type polyfills
 type i8 = number
 type i32 = number
