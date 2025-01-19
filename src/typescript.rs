@@ -74,14 +74,14 @@ export type KeyFrame = {
     position: i32
 }
 
-/// All the interesting data are stored as properties in the header, properties such as:
-///
-/// - When and who scored a goal
-/// - Player stats (goals, assists, score, etc).
-/// - Date and level played on
-///
-/// A property can be a number, string, or a more complex object such as an array containing
-/// additional properties.
+// All the interesting data are stored as properties in the header, properties such as:
+//
+// - When and who scored a goal
+// - Player stats (goals, assists, score, etc).
+// - Date and level played on
+//
+// A property can be a number, string, or a more complex object such as an array containing
+// additional properties.
 export type HeaderProp = any
 
 // Debugging info stored in the replay if debugging is enabled.
@@ -121,7 +121,7 @@ export type Vector3f = {
     z: f32
 }
 
-/// An object's current vector
+// An object's current vector
 export type Vector3i = {
     x: i32
     y: i32
@@ -135,77 +135,77 @@ export type Quaternion = {
     w: f32
 }
 
-/// An object's current rotation
+// An object's current rotation
 export type Rotation = {
     yaw: Option<i8>
     pitch: Option<i8>
     roll: Option<i8>
 }
 
-/// Notifies that an actor has had one of their properties updated (most likely their rigid body
-/// state (location / rotation) has changed)
+// Notifies that an actor has had one of their properties updated (most likely their rigid body
+// state (location / rotation) has changed)
 export type UpdatedAttribute = {
-    /// The actor that had an attribute updated
+    // The actor that had an attribute updated
     actor_id: ActorId
 
-    /// The attribute stream id that was decoded
+    // The attribute stream id that was decoded
     stream_id: StreamId
 
-    /// The attribute's object id
+    // The attribute's object id
     object_id: ObjectId
 
-    /// The actual data from the decoded attribute
+    // The actual data from the decoded attribute
     attribute: Attribute
 }
 
-/// Contains the time and any new information that occurred during a frame
+// Contains the time and any new information that occurred during a frame
 export type Frame = {
-    /// The time in seconds that the frame is recorded at
+    // The time in seconds that the frame is recorded at
     time: f32
 
-    /// Time difference between previous frame
+    // Time difference between previous frame
     delta: f32
 
-    /// List of new actors seen during the frame
+    // List of new actors seen during the frame
     new_actors: Vec<NewActor>
 
-    /// List of actor id's that are deleted / destroyed
+    // List of actor id's that are deleted / destroyed
     deleted_actors: Vec<ActorId>
 
-    /// List of properties updated on the actors
+    // List of properties updated on the actors
     updated_actors: Vec<UpdatedAttribute>
 }
 
-/// A replay encodes a list of objects that appear in the network data. The index of an object in
-/// this list is used as a key in many places: reconstructing the attribute hierarchy and new
-/// actors in the network data.
+// A replay encodes a list of objects that appear in the network data. The index of an object in
+// this list is used as a key in many places: reconstructing the attribute hierarchy and new
+// actors in the network data.
 export type ObjectId = i32
 
-/// A `StreamId` is an attribute's object id in the network data. It is a more compressed form of
-/// the object id. Whereas the an object id might need to take up 9 bits, a stream id may only take
-/// up 6 bits.
+// A `StreamId` is an attribute's object id in the network data. It is a more compressed form of
+// the object id. Whereas the an object id might need to take up 9 bits, a stream id may only take
+// up 6 bits.
 export type StreamId = i32
 
-/// An actor in the network data stream. Could identify a ball, car, etc. Ids are not unique
-/// across a replay (eg. an actor that is destroyed may have its id repurposed).
+// An actor in the network data stream. Could identify a ball, car, etc. Ids are not unique
+// across a replay (eg. an actor that is destroyed may have its id repurposed).
 export type ActorId = i32
 
-/// Information for a new actor that appears in the game
+// Information for a new actor that appears in the game
 export type NewActor = {
-    /// The id given to the new actor
+    // The id given to the new actor
     actor_id: ActorId
 
-    /// An name id
+    // An name id
     name_id: Option<i32>
 
-    /// The actor's object id.
+    // The actor's object id.
     object_id: ObjectId
 
-    /// The initial trajectory of the new actor
+    // The initial trajectory of the new actor
     initial_trajectory: Trajectory
 }
 
-/// Contains the optional location and rotation of an object when it spawns
+// Contains the optional location and rotation of an object when it spawns
 export type Trajectory = {
     location: Option<Vector3i>
     rotation: Option<Rotation>
@@ -233,7 +233,7 @@ export type Attribute = {
     Enum?: u16
     Explosion?: Explosion
     ExtendedExplosion?: ExtendedExplosion
-    FlaggedByte(bool, u8)
+    FlaggedByte?: [bool, u8]
     ActiveActor?: ActiveActor
     Float?: f32
     GameMode?: [u8, u8]
@@ -298,19 +298,19 @@ export type AppliedDamage = {
 }
 
 export type DamageState = {
-    /// State of the dropshot tile (0 - undamaged, 1 - damaged, 2 - destroyed)
+    // State of the dropshot tile (0 - undamaged, 1 - damaged, 2 - destroyed)
     tile_state: u8
 
-    /// True if damaged
+    // True if damaged
     damaged: bool
 
-    /// Player actor that inflicted the damage
+    // Player actor that inflicted the damage
     offender: ActorId
 
-    /// Position of the ball at the time of the damage
+    // Position of the ball at the time of the damage
     ball_position: Vector3f
 
-    /// True for the dropshot tile that was hit by the ball (center tile of the damage area)
+    // True for the dropshot tile that was hit by the ball (center tile of the damage area)
     direct_hit: bool
     unknown1: bool
 }
