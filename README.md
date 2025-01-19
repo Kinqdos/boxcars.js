@@ -55,12 +55,12 @@ console.log(parser.parse())
 
 ### 🛠 Compile rust to wasm with `wasm-pack build`
 
-```
-wasm-pack build
+```bash
+wasm-pack build -t nodejs
 ```
 
 ### 📦 Build npm package
 
-```
+```bash
 wasm-pack pack
 ```
