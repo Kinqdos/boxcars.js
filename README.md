@@ -12,7 +12,7 @@ It uses [WebAssembly](https://github.com/rustwasm/wasm-pack) to compile the unde
 
 ## 🚀 Features
 
-- ✨ **Full TypeScript support**
+- ✨ **Fully Typed**: Full TypeScript support built in
 - 🛠️ **Intuitive API**: Designed for developer productivity and ease of use.
 - ⚡  **Lightweight and Fast**: Zero Dependencies & Rust execution speed
 
