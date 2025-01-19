@@ -266,6 +266,7 @@ export type Attribute = {
     PickupInfo?: PickupInfo
     Impulse?: Impulse
     ReplicatedBoost?: ReplicatedBoost
+    LogoData?: LogoData
 }
 
 export type ActiveActor = {
@@ -496,7 +497,7 @@ export type LoadoutsOnline = {
 // IMPORTANT: Only one is present at a time, due to rust enum
 export type ProductValue = "NoColor" | "Absent" | {
     OldColor?: u32
-    NewColor?: i32
+    NewColor?: u32
     OldPaint?: u32
     NewPaint?: u32
     Title?: string
@@ -532,4 +533,8 @@ export type ReplicatedBoost = {
     unused1: u8
     unused2: u8
 }
-"#;
+
+export type LogoData = {
+    logo_id: u32
+    swap_colors: bool
+}"#;
