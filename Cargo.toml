@@ -2,7 +2,7 @@
 # Package name is boxcars for the npm package name
 [package]
 name = "boxcars"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Kinqdos"]
 edition = "2018"
 
