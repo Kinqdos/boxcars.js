@@ -253,7 +253,7 @@ export type Attribute = {
     Title?: [bool, bool, u32, u32, u32, u32, u32, bool]
     TeamPaint?: TeamPaint
     RigidBody?: RigidBody
-    String?: String
+    String?: string
     UniqueId?: UniqueId
     Reservation?: Reservation
     PartyLeader?: Option<UniqueId>
@@ -444,7 +444,7 @@ export type SwitchId = {
 
 export type Ps4Id = {
     online_id: u64
-    name: String
+    name: string
     unknown1: Vec<u8>
 }
 
@@ -460,24 +460,24 @@ export type RemoteId = {
     Xbox?: u64
 
     QQ?: u64
-    Epic?: String
+    Epic?: string
 }
 
 export type Reservation = {
     number: u32
     unique_id: UniqueId
-    name: Option<String>
+    name: Option<string>
     unknown1: bool
     unknown2: bool
     unknown3: Option<u8>
 }
 
 export type PrivateMatchSettings = {
-    mutators: String
+    mutators: string
     joinable_by: u32
     max_players: u32
-    game_name: String
-    password: String
+    game_name: string
+    password: string
     flag: bool
 }
 
@@ -508,7 +508,7 @@ export type ProductValue = "NoColor" | "Absent" | {
 
 export type RepStatTitle = {
     unknown: bool
-    name: String
+    name: string
     unknown2: bool
     index: u32
     value: u32
