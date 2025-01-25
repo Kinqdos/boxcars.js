@@ -2,7 +2,7 @@ use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(typescript_type = "any")]
+    #[wasm_bindgen(typescript_type = "Replay")]
     pub type Replay;
 }
 
