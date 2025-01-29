@@ -11,11 +11,11 @@ pub const TYPESCRIPT: &'static str = r#"
 // Type polyfills
 type i8 = number
 type i32 = number
-type i64 = number
+type i64 = string // i64 gets serialized as string, because of its size
 type u8 = number
 type u16 = number
 type u32 = number
-type u64 = number
+type u64 = string // i64 gets serialized as string, because of its size
 type f32 = number
 type bool = boolean
 type Option<T> = T | null
@@ -239,7 +239,7 @@ export type Attribute = {
     GameMode?: [u8, u8]
     Int?: i32
 
-    Int64?: i64
+    Int64?: i64 // serialized as string (see type definition)
     Loadout?: Loadout
     TeamLoadout?: TeamLoadout
     Location?: Vector3f
@@ -248,7 +248,7 @@ export type Attribute = {
     Pickup?: Pickup
     PickupNew?: PickupNew
 
-    QWord?: u64
+    QWord?: u64 // serialized as string (see type definition)
     Welded?: Welded
     Title?: [bool, bool, u32, u32, u32, u32, u32, bool]
     TeamPaint?: TeamPaint
@@ -433,17 +433,17 @@ export type UniqueId = {
 }
 
 export type PsyNetId = {
-    online_id: u64
+    online_id: u64 // serialized as string (see type definition)
     unknown1: Vec<u8>
 }
 
 export type SwitchId = {
-    online_id: u64
+    online_id: u64 // serialized as string (see type definition)
     unknown1: Vec<u8>
 }
 
 export type Ps4Id = {
-    online_id: u64
+    online_id: u64 // serialized as string (see type definition)
     name: string
     unknown1: Vec<u8>
 }
@@ -454,12 +454,12 @@ export type RemoteId = {
     PsyNet?: PsyNetId
     SplitScreen?: u32
 
-    Steam?: u64
+    Steam?: u64 // serialized as string (see type definition)
     Switch?: SwitchId
 
-    Xbox?: u64
+    Xbox?: u64 // serialized as string (see type definition)
 
-    QQ?: u64
+    QQ?: u64 // serialized as string (see type definition)
     Epic?: string
 }
 
