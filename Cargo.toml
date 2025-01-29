@@ -2,7 +2,7 @@
 # Package name is boxcars for the npm package name
 [package]
 name = "boxcars-wasm"
-version = "1.0.2"
+version = "1.0.3"
 authors = ["Kinqdos"]
 edition = "2021"
 
