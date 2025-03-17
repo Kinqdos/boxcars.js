@@ -1,7 +1,7 @@
 # This package will never be published as rust crate
 # Package name is boxcars for the npm package name
 [package]
-name = "boxcars-wasm"
+name = "boxcars-js"
 version = "1.0.3"
 authors = ["Kinqdos"]
 edition = "2021"
