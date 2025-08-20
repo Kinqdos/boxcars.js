@@ -2,7 +2,7 @@
 # Package name is boxcars for the npm package name
 [package]
 name = "boxcars-js"
-version = "1.0.4"
+version = "1.0.5"
 authors = ["Kinqdos"]
 edition = "2021"
 
@@ -14,8 +14,8 @@ default = ["console_error_panic_hook"]
 
 [dependencies]
 wasm-bindgen = "0.2.100"
-boxcars = "0.10.2"
-serde_json = "1.0.140"
+boxcars = "0.10.5"
+serde_json = "1.0.143"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
